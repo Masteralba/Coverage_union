@@ -1,7 +1,6 @@
-class Node():
+class Node:
 
     def __init__(self):
-
         self.x = None
         self.y = None
         self.next = None
@@ -9,7 +8,6 @@ class Node():
         self.intersection = False
 
     def __init__(self, coords, next, prev):
-
         self.x = coords[0]
         self.y = coords[1]
         self.next = next
@@ -18,24 +16,27 @@ class Node():
     def __str__(self):
         return f"Coords x: {self.x} y: {self.y}"
 
-    
-class Outline():
+
+class Outline:
 
     def __init__(self):
-        
         self.root = None
 
     def __init__(self, polygon):
-
         self.root = Node(polygon[0], None, None)
 
         current = self.root
 
         for i in range(1, len(polygon)):
-
             current.next = Node(polygon[i], None, current)
 
             current = current.next
 
         current.next = self.root
         self.root.prev = current
+
+
+class Polygon:
+    def __init__(self, c: Outline, holes: list[Outline]):
+        self.holes = holes
+        self.c = c
