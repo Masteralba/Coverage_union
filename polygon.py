@@ -61,3 +61,8 @@ class Outline:
             current = current.next
 
         return res
+
+class Polygon:
+    def __init__(self, c: Outline, holes: list[Outline]):
+        self.c = c
+        self.holes = holes

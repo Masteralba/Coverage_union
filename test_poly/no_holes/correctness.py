@@ -1,6 +1,7 @@
 import polygon
 import test_util.plot_poly as plt
 import convex_hull as hull
+import union
 
 
 def poly_builder(l: list) -> polygon.Polygon:
@@ -67,12 +68,39 @@ def test7_disj():
     """
     Последний тест, который писал я как живой человек, тут будут пилы
     """
-    A = [(0, 0), (1, 1), (0, 2), (1, 3), (0, 4), (1, 5), (3, 5), (2, 4), (3, 3), (2, 2), (3, 1), (2,0)]
-    B = [(0,0)]
+    A = [(0, 0), (1, 1), (0, 2), (1, 3), (0, 4), (1, 5), (3, 5), (2, 4), (3, 3), (2, 2), (3, 1), (2, 0)]
+    B = [(0, 0)]
     return poly_builder(A), poly_builder(B)
 
 
-test = test6_disj()
-plt.plot_polygon(list(test), None, True)
-plt.plot_polygon(hull.build_convex_hull(test[0], test[1]))
+def test1_inter():
+    """
+    Проверяем функции глеба, пока что они крайне пососно сделаны, поэтому рыдаем.
+    Начнем с квадратиков.
+    """
+    A = [(0, 0), (0, 2), (2, 2), (2, 0)]
+    B = [(1, 1), (1, 3), (3, 3), (3, 1)]
+    return poly_builder(A), poly_builder(B)
 
+
+def test2_inter():
+    """
+    Делаем так, чтобы была дырка после объединения
+    """
+    A = [(1, 0), (1, 7), (4, 7), (4, 6), (2, 6), (2, 1), (4, 1), (4, 0)]
+    B = [(0, 2), (0, 3), (3, 3), (3, 4), (0, 4), (0, 5), (4, 5), (4, 2)]
+    return poly_builder(A), poly_builder(B)
+
+
+def test3_inter():
+    """
+    Делаем так, чтобы была дырка после объединения
+    """
+    A = [(1, 0), (1, 7), (4, 7), (4, 6), (2, 6), (2, 1), (4, 1), (4, 0)]
+    B = [(0, 2), (0, 3), (3, 3), (3, 4), (0, 4), (0, 5), (4, 5), (4, 2)]
+    return poly_builder(A), poly_builder(B)
+
+
+test = list(test2_inter())
+plt.plot_polygon(test, None, True)
+plt.plot_polygon(union.union(test[0], test[1]))
