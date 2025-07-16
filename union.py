@@ -1,6 +1,5 @@
 from polygon import Outline, Node
 
-
 def find_lines_intersection(n1, n2, q1, q2):
     
     a1 = [n1.x, n1.y]
@@ -219,8 +218,6 @@ def clipping(o1, o2, into_p1=False, into_p2=False):
             else:
                 break
 
-            
-
         result.append(clipped)
 
     return clipped
@@ -235,4 +232,3 @@ if __name__ == "__main__":
     o2 = Outline(polygon2)
 
     print(clipping(o1, o2))
-
