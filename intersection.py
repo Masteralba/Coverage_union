@@ -1,6 +1,7 @@
 import polygon
 from union import next_non_intersection, find_lines_intersection
 
+
 def find_intersection(p1: polygon.Polygon, p2: polygon.Polygon):
     current1 = p1.c.root
     current2 = p2.c.root
@@ -17,14 +18,14 @@ def find_intersection(p1: polygon.Polygon, p2: polygon.Polygon):
             # check intersection
             if (intersection[1] > 0 and intersection[1] < 1
                     and intersection[2] > 0 and intersection[2] < 1):
-                    return True
-        
+                return True
+
             current2 = next_non_intersection(current2)
 
             if current2 != p2.c.root:
                 continue
             else:
-                 break
+                break
 
         current1 = next_non_intersection(current1)
 

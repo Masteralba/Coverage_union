@@ -1,4 +1,5 @@
 import convex_hull
+import union
 import polygon
 import math
 import test_util.plot_poly as plt
@@ -75,10 +76,18 @@ def test2s_disj(n):
     """
     Большие правильные многоугольники, в разных центральных точках
     """
-    return (poly_builder(generate_regular_polygon(n, 140,0, 0)),
+    return (poly_builder(generate_regular_polygon(n, 140, 0, 0)),
             poly_builder(generate_regular_polygon(n, 140, 300, 300)))
 
 
-sample = list(test2s_disj(100000))
+def test1s_inter(n):
+    """
+    По классике правильные многоугольники
+    """
+    return (poly_builder(generate_regular_polygon(n, 140, 50, 0)),
+            poly_builder(generate_regular_polygon(n, 140, 100.2, 100.2)))
+
+
+sample = list(test1s_inter(1000))
 plt.plot_polygon(sample)
-plt.plot_polygon(convex_hull.build_convex_hull(sample[0], sample[1]))
+plt.plot_polygon(union.union(sample[0], sample[1]))

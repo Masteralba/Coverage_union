@@ -224,6 +224,7 @@ def clipping(o1, o2, into_p1=False, into_p2=False):
 def union(A: Polygon, B: Polygon) -> Polygon:
     return clipping(A.c, B.c)
 
+
 def parse_result(result):
     for i in range(len(result)):
         result[i] = result[i][::-1]
